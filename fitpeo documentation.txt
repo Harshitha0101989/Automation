@@ -1,0 +1,63 @@
+Web Automation Test Suite Documentation
+Objective:
+To automate the navigation, interaction, and verification on the FitPeo webpage using Cypress.
+The tests cover multiple functionalities, including navigating through the homepage, interacting with sliders, updating values, and verifying expected outcomes.
+This documentation covers the test cases to automate interactions with the FitPeo web page using Cypress.
+The goal is to automate various actions, such as navigation, slider adjustments, text field updates, and verifying the total recurring reimbursement.
+
+1. Navigate to the FitPeo Homepage
+Test Objective: Open the web browser and navigate to the FitPeo homepage.
+Action:
+Open the homepage URL using the cy.visit() command.
+Expected Result: The homepage should load successfully.
+
+2. Navigate to the Revenue Calculator Page
+Test Objective: From the homepage, navigate to the Revenue Calculator page.
+Action:
+Identify and click the link or button that leads to the Revenue Calculator.
+Expected Result: The Revenue Calculator page should be loaded.
+
+3. Scroll Down to the Slider Section
+Test Objective: Scroll down the page to ensure that the Revenue Calculator Slider is visible.
+Action:
+Use cy.scrollTo() to scroll to the slider section.
+Expected Result: The slider should be visible after scrolling.
+
+4. Adjust the Slider
+Test Objective: Adjust the slider to set its value to 820. The corresponding text field should also update to 820.
+Action:
+Locate the slider element using a suitable selector.
+Set the slider value to 820 by manipulating its position.
+Expected Result: The slider's value should change to 820, and the corresponding text field should reflect this value.
+
+5. Update the Text Field
+Test Objective: Click on the text field and enter the value 560. The slider should also update to reflect this value.
+Action:
+Locate the text field associated with the slider.
+Enter the value 560 in the text field and ensure the slider updates accordingly.
+Expected Result: The text field should show 560, and the slider position should change to match the value.
+
+6. Validate Slider Value
+Test Objective: Ensure that when the value 560 is entered in the text field, the slider's position updates accordingly.
+Action:
+Verify that the slider's position matches the value entered in the text field.
+Expected Result: The slider's value should be updated to 560 after the user enters this value in the text field.
+
+7. Select CPT Codes
+Test Objective: Scroll down further and select the checkboxes for CPT-99091, CPT-99453, CPT-99454, and CPT-99474.
+Action:
+Identify and select the checkboxes for each CPT code.
+Expected Result: The selected checkboxes should be checked after interacting with them.
+
+Test Case 8: Validate Total Recurring Reimbursement
+Objective: Verify that the header displaying Total Recurring Reimbursement for all Patients Per Month shows the value $110700.
+Description: Locates the header containing Total Recurring Reimbursement for all Patients Per Month, navigates to the next sibling, and verifies the displayed value.
+Expected Outcome: The value $110700 should be displayed.
+
+Test Execution Steps:
+Install Cypress using npm install cypress --save-dev.
+Open Cypress using npx cypress open.
+Write each test case in separate files under cypress/e2e.
+Run the tests in the Cypress Test Runner or in headless mode with npx cypress run.
+
+

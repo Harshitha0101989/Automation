@@ -1,0 +1,62 @@
+describe('FitPeo Web Automation', () => {
+    before(() => {
+        // Visit the FitPeo homepage
+        cy.visit('https://fitpeo.com'); 
+    });
+
+    it('Navigate to Revenue Calculator Page', () => {
+        // Navigate to the Revenue Calculator page
+        cy.contains('Revenue Calculator').click(); 
+    });
+
+    it('Scroll Down to Slider Section', () => {
+        // Scroll to the slider section
+        cy.get('[class*="MuiSlider-thumb MuiSlider"]')
+            .scrollIntoView()
+            .should('be.visible');
+    });
+
+    it('Adjust Slider to 820', () => {
+        // Adjust the slider to 820
+         cy.get('[class*="MuiSlider-thumb MuiSlider"]')
+            .invoke('val', 820)
+            .trigger('change');
+
+        // Validate the text field updates to 820
+        cy.get('#r0')
+            .should('have.value', '820');
+    });
+
+    it('Update Text Field to 560 and Validate Slider', () => {
+        // Update the text field to 560
+        cy.get('#r0') 
+            .clear()
+            .type('560')
+            .trigger('change');
+
+        // Validate the slider moves to 560
+      cy.get('[class*="MuiSlider-thumb MuiSlider"]') 
+            .should('have.value', '560');
+    });
+
+    it('Select CPT Codes', () => {
+        // Scroll to the CPT codes section
+        cy.get('.cpt-codes-section') // Adjust selector for CPT codes section
+            .scrollIntoView();
+
+        // Select specific CPT code checkboxes
+        const cptCodes = ['CPT-99091', 'CPT-99453', 'CPT-99454', 'CPT-99474'];
+        cptCodes.forEach((code) => {
+            cy.contains(code) // Find the checkbox label by text
+                .prev('input[type="checkbox"]') // Navigate to the corresponding checkbox
+                .check();
+        });
+    });
+
+    it('Validate Total Recurring Reimbursement', () => {
+        // Validate the total recurring reimbursement
+        cy.contains('Total Recurring Reimbursement for all Patients Per Month:')
+            .next() 
+            .should('have.text', '$110700');
+    });
+});
